@@ -1,0 +1,15 @@
+# List all todo list
+GET http://localhost:8080/list
+
+# Add a new todo list
+
+POST http://localhost:8080/add
+Content-Type: application/text
+
+hello world1
+
+# Set a todo item to DONE
+POST http://localhost:8080/add
+Content-Type: application/text
+
+hello world1
