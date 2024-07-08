@@ -36,7 +36,9 @@ public class TodoListDaoImpl implements TodoListDao {
 	    final TodoDTO todoDTO = row2TodoDTO(row);
 	    todoMap.put(todoDTO.getId(), todoDTO);
 	}
-	return todoMap.values().stream().collect(Collectors.toList());
+	return todoMap.values().stream()
+	    .filter(todo -> todo.getStatus() != Status.DELETE)
+	    .collect(Collectors.toList());
     }
 
     private TodoDTO row2TodoDTO(final String[] row) {
