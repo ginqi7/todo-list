@@ -6,11 +6,10 @@
 	<meta name="viewport" content= "width=device-width, initial-scale=1.0">
 	
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-	<script type="text/javascript" src="core.js"></script>
-	<script type="text/javascript" src="app.js"></script>
-
 	<title>To Do List</title>
+	<script type="text/javascript" src="core.js"></script>
+	<script type="text/javascript" src="md5.js"></script>
+	<script type="text/javascript" src="login.js"></script>
     </head>
 
     <body>
@@ -28,14 +27,14 @@
 	</header>
 
 	<div class="container mt-3">
-	    <h2>Add Item</h2>
+	    <h2>Password</h2>
 
 	    <label id="lblsuccess" class="text-success" style="display: none;">
 	    </label>
 	    <label id="lblerror" class="text-danger" style="display: none;">
 	    </label>
 	    
-	    <form id="addForm">
+	    <form id="login">
 		<div class="row">
 		    <div class="col-lg-7 col-md-7 col-sm-7">
 			<input type="text" onkeyup= "toggleButton(this, 'submit')" class="form-control" id="item">
@@ -46,12 +45,6 @@
 			       id="submit" value="Submit" disabled>
 		    </div>
 		</div>
-	    </form>
-
-	    <h3 class="mt-4">Tasks</h3>
-
-	    <form id="addForm">
-		<ul class="list-group" id="items"></ul>
 	    </form>
 	</div>
     </body>

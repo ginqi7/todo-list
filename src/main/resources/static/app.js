@@ -1,13 +1,18 @@
 // app.js
+
 window.onload = () => {
     const form = document.querySelector("#addForm");
     let items = document.getElementById("items");
     let submit = document.getElementById("submit");
     let editItem = null;
 
-    form.addEventListener("submit", submitHandler);
-    items.addEventListener("click", clickHandler);
-    
+    if (form) {
+	form.addEventListener("submit", submitHandler);
+    }
+    if (items) {
+	items.addEventListener("click", clickHandler);
+    }
+        
     // Show all Todo list items.
     sendRequest({method: "GET", path: "/list"}, data => {
 	for (const item of data) {
@@ -15,35 +20,6 @@ window.onload = () => {
 	}
     });
 };
-
-/**
- * Send a request to backend.
- * @param {obj} requestInfo - some request info like: method, path, params, body
- * @param {function} handle - a function to handle request response
- */
-function sendRequest(requestInfo, handle) {
-    let path = `http://${window.location.host}${requestInfo.path}`;
-    if(requestInfo && requestInfo.params) {
-	path = path + "?" + 
-	    Object.entries(requestInfo.params)
-	    .map(([key, value]) => {return key + "=" + value;})
-	    .join('&');
-    }
-    fetch(path, {
-	method: requestInfo.method,
-	body: requestInfo.body})
-	.then(response => {
-	    if (!response.ok) {
-		throw new Error('Network response was not ok');
-	    }
-	    return response.json();})
-	.then(data => {
-	    console.log(data)
-	    handle(data)})
-	.catch(error => {
-	    console.error('There was a problem with your fetch operation:', error);
-	});
-}
 
 /**
  * Add and show a todo list item in todo list.
@@ -116,13 +92,6 @@ function clickHandler(e) {
 	if (confirm("Are you Sure?")) {
 	    sendRequest({method: "DELETE", path: "/delete", params: {todoId: li.id}}, data => {
 		items.removeChild(li);
-		document.getElementById("lblsuccess").innerHTML = "Text deleted successfully";
-
-		document.getElementById("lblsuccess").style.display = "block";
-
-		setTimeout(function() {
-		    document.getElementById("lblsuccess").style.display = "none";
-		}, 3000);
 	    });
 
 	}
@@ -141,6 +110,4 @@ function clickHandler(e) {
     }
 }
 
-function toggleButton(ref, btnID) {
-    document.getElementById(btnID).disabled = false;
-}
+
