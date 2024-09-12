@@ -4,47 +4,27 @@
     <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content= "width=device-width, initial-scale=1.0">
-	
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<title>To Do List</title>
+	<link href="output.css" rel="stylesheet">
 	<script type="text/javascript" src="core.js"></script>
 	<script type="text/javascript" src="md5.js"></script>
 	<script type="text/javascript" src="login.js"></script>
     </head>
 
-    <body>
-	<header class="bg-success text-white p-5">
-	    <div class="container">
-		<div class="row">
-		    <div class="col-lg-12 col-md-12 col-sm-12">
-			<font face="Comic sans MS" size="11" color="black">
-			    <strong>ToDo List</strong>
-			</font>
-			
-		    </div>
-		</div>
-	    </div>
-	</header>
+    <body class="sm:mx-auto sm:w-3/5 h-screen overflow-hidden">
+	<h1 class="font-black text-6xl text-center italic">Todo List</h1>
 
-	<div class="container mt-3">
-	    <h2>Password</h2>
-
-	    <label id="lblsuccess" class="text-success" style="display: none;">
-	    </label>
-	    <label id="lblerror" class="text-danger" style="display: none;">
-	    </label>
-	    
-	    <form id="login">
-		<div class="row">
-		    <div class="col-lg-7 col-md-7 col-sm-7">
-			<input type="text" onkeyup= "toggleButton(this, 'submit')" class="form-control" id="item">
-		    </div>
-
-		    <div class="col-lg-5 col-md-5 col-sm-5">
-			<input type="submit" class="btn btn-dark"
-			       id="submit" value="Submit" disabled>
-		    </div>
-		</div>
+	<div>
+	    <h2 class="font-black text-4xl italic m-2">Password</h2>
+	    <form id="login" 
+		  onsubmit="loginHandler(event)"
+		  class="my-2 flex justify-between" >
+		<input type="password" 
+		       class="password
+			     px-2 h-10 w-10/12 border rounded" >
+		<input type="submit" value="Submit"
+		       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+		>
 	    </form>
 	</div>
     </body>

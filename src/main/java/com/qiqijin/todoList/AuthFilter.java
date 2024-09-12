@@ -52,6 +52,7 @@ public class AuthFilter extends GenericFilterBean{
 	if (requestURI.equals(Constants.LOGIN_URI) 
 	    || requestURI.equals(Constants.TOKEN_URI)
 	    || requestURI.endsWith(".js")
+	    || requestURI.endsWith(".css")
 	) {
 	    return true;
 	}
