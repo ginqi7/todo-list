@@ -31,8 +31,8 @@ function refresh() {
 
 function classifyTask(data) {
     groupedTasks = groupBy(data, "status")
-    miniVue.tasks = groupedTasks["TODO"]
-    miniVue.doneList = groupedTasks["DONE"]
+    miniVue.tasks = groupedTasks["TODO"] || []
+    miniVue.doneList = groupedTasks["DONE"] || []
 }
 
 /**
@@ -121,16 +121,10 @@ function toggleStatus(e) {
     var element = e.target.parentNode;
     if (e.target.checked) {
 	[task, miniVue.tasks] = toggleTaskStatus(miniVue.tasks, element.id)
-	if (miniVue.doneList == undefined) {
-	    miniVue.doneList = []
-	}
 	miniVue.doneList.unshift(task)
 	miniVue.doneList = copyData(miniVue.doneList)
     } else {
 	[task, miniVue.doneList] = toggleTaskStatus(miniVue.doneList, element.id)
-	if (miniVue.tasks == undefined) {
-	    miniVue.tasks = []
-	}
 	miniVue.tasks.unshift(task)
 	miniVue.tasks = copyData(miniVue.tasks)
     }
