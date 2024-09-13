@@ -6,24 +6,28 @@
 	<meta name="viewport" content= "width=device-width, initial-scale=1.0">
 	<title>To Do List</title>
 	<link href="output.css" rel="stylesheet">
+	<link rel="manifest" href="manifest.json">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<script type="text/javascript" src="core.js"></script>
 	<script type="text/javascript" src="md5.js"></script>
 	<script type="text/javascript" src="login.js"></script>
     </head>
 
-    <body class="sm:mx-auto sm:w-3/5 h-screen overflow-hidden">
+    <body class="mx-auto md:w-3/5 h-screen overflow-hidden">
 	<h1 class="font-black text-6xl text-center italic">Todo List</h1>
 
 	<div>
 	    <h2 class="font-black text-4xl italic m-2">Password</h2>
 	    <form id="login" 
 		  onsubmit="loginHandler(event)"
-		  class="my-2 flex justify-between" >
+		  class="my-2 flex justify-between m-2" >
 		<input type="password" 
 		       class="password
-			     px-2 h-10 w-10/12 border rounded" >
+			     px-2 h-10 w-4/6 md:w-10/12 border rounded" >
 		<input type="submit" value="Submit"
-		       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+		       class="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 md:px-4 border border-blue-700 rounded"
 		>
 	    </form>
 	</div>

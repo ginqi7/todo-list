@@ -1,8 +1,11 @@
 // app.js
 
 var editItem;
+var inputItem;
 
 window.onload = () => {
+    inputItem = document.querySelector(".input")
+    swipeListener()
     refresh()
 };
 
@@ -41,6 +44,9 @@ function classifyTask(data) {
 function submitHandler(e) {
     e.preventDefault();
     let inputValue = miniVue.inputTodo
+    if (!inputValue || inputValue.trim().length === 0) {
+	return
+    }
     let submitType = miniVue.submitType
     miniVue.inputTodo = ""
     if (submitType == "Edit") {
@@ -69,14 +75,15 @@ function copyData(data) {
 
 
 function editHandler (e) {
-    var element = e.target.parentNode;
-    miniVue.inputTodo = element.childNodes[3].innerText;
+    var element = e.target.parentNode.parentNode;
+    miniVue.inputTodo = element.querySelector(".data").innerText
     miniVue.submitType = "Edit";
     editItem = element
+    inputItem.focus()
 }
 
 function deleteHandler(e) {
-    var element = e.target.parentNode;
+    var element = e.target.parentNode.parentNode;
     confirm("Are you sure you want to delete this todo item?", () => {
 	sendRequest({method: "DELETE", path: "/delete", params: {todoId: element.id}}, data => {
 	    refresh();
@@ -147,3 +154,42 @@ function showDone(e) {
 }
 
 
+function swipeListener() {
+    
+    const app = document.querySelector(".app")
+
+    const observer = new MutationObserver(() => {
+	const swipeContainers = document.querySelectorAll('li');
+	swipeContainers.forEach(container => {
+            let startX, currentX;
+
+            container.addEventListener('touchstart', (event) => {
+		startX = event.touches[0].clientX;
+		console.log(startX)
+            });
+
+            container.addEventListener('touchmove', (event) => {
+		currentX = event.touches[0].clientX;
+		const deltaX = currentX - startX;
+		console.log(deltaX)
+            });
+
+            container.addEventListener('touchend', (event) => {
+		const deltaX = currentX - startX;
+		var li = event.target.parentNode
+		var options = li.querySelector(".options")
+		if (deltaX < -50) { 
+		    options.classList.remove('hidden')
+		}
+		if (deltaX > 50) { 
+		    options.classList.add('hidden')
+		}
+            });
+	})
+
+    });
+    
+    observer.observe(app, { childList: true, subtree: true });
+
+    ;
+}
