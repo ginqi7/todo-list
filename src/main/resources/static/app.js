@@ -159,13 +159,11 @@ function swipeListener() {
 
             container.addEventListener('touchstart', (event) => {
 		startX = event.touches[0].clientX;
-		console.log(startX)
             });
 
             container.addEventListener('touchmove', (event) => {
 		currentX = event.touches[0].clientX;
 		const deltaX = currentX - startX;
-		console.log(deltaX)
             });
 
             container.addEventListener('touchend', (event) => {

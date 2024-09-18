@@ -106,10 +106,20 @@
          }
      })
 
-     // if('serviceWorker' in navigator) {
-     // 	navigator.serviceWorker.register('/service-worker.js', { scope: '/' });
-     // }
+      // if('serviceWorker' in navigator) {
+      // 	navigator.serviceWorker.register('/service-worker.js', { scope: '/' });
+      // }
+
     </script>
     <script type="text/javascript" src="core.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="pulltorefresh.js"></script>
+    <script>
+      const ptr = PullToRefresh.init({
+	  mainElement: 'body',
+	  onRefresh() {
+	      window.location.reload();
+	  }
+      });
+    </script>
 </html>
