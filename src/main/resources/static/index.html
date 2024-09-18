@@ -117,6 +117,7 @@
     <script>
       const ptr = PullToRefresh.init({
 	  mainElement: 'body',
+	  triggerElement: "h1",
 	  onRefresh() {
 	      window.location.reload();
 	  }
